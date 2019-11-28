@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name = 'viewport' content = 'width = device-width, initial-scale = 1.0'>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='media/python.ico') }}">
+    {% block head %}{% endblock %}
+  </head>
+  <nav class="navbar navbar-light bg-light shadow-sm">
+    <a class="navbar-brand">Data FTW</a>
+  </nav>
+  <body>
+    {% block body %}{% endblock %}
+  </body>
+  <script type="text/javascript" src="{{ url_for('static', filename='JS/base.js') }}" ></script>
+</html>
