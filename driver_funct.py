@@ -49,9 +49,7 @@ def start_crawling(driver, entries=10):
             height=400
         )
     cloud.generate(s)
-    return cloud.to_image()
-    # cloud.to_file('./static/media/temp/wordcloud.jpg')
-
-
-def serve_pil_image(pil_img):
-    return base64.b64encode(pil_img.tobytes())
+    path = './static/media/temp/'
+    file = 'wordcloud.jpg'
+    cloud.to_file(path+file)
+    return path, file

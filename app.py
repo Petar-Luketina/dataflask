@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_file
+from flask import Flask, render_template, request, jsonify, send_from_directory
 import requests
 import json
 from driver_funct import *
@@ -31,7 +31,6 @@ def webcrawler():
     if request.method == 'POST':
         data = request.get_data().decode('utf-8')
         data = json.loads(data)
-        print(data)
         if data['message'] == 'open':
             driver = webdriver.Chrome(executable_path=path)
             cache['driver'] = driver
@@ -45,9 +44,8 @@ def webcrawler():
             driver.get(url=data['url'])
             return jsonify({'message': 'success'})
         elif data['message'] == 'start':
-            temp_image = start_crawling(cache['driver'])
-            temp_image = serve_pil_image(temp_image)
-            return send_file(temp_image, mimetype='image/jpeg')
+            path, file = start_crawling(cache['driver'])
+            return send_from_directory(directory=path, as_attachment=True, filename=file)
     else:
         return render_template('webcrawler.html')
 if __name__ == '__main__':

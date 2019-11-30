@@ -13,9 +13,16 @@ function sendAjax(data) {
       }
       else {
         removeSpinner();
-        var img = document.createElement('img');
-        img.src = "data:image/png;base64," + message;
-        document.body.appendChild(img);
+        try {
+          $('img').remove();
+        }
+        catch {
+          console.log('catch fired')
+        }
+        finally {
+          var img = '<img src="/static/media/temp/wordcloud.jpg">';
+          $('body').append(img);
+        }
       };
     },
     error: function(xhr, status) {
@@ -60,7 +67,7 @@ function startCrawling() {
 }
 
 function addSpinner() {
-  let width =  String(window.innerWidth/2);
+  let width =  String(window.innerWidth/4);
   let height = String(window.innerHeight/4);
   let ele = `
   <div id="spinner" class="modal-backdrop fade show">
@@ -74,9 +81,4 @@ function addSpinner() {
 
 function removeSpinner() {
   $('#spinner').remove();
-}
-
-
-function hexToBase64(str) {
-    return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
 }
