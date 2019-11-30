@@ -1,6 +1,5 @@
 function sendAjax(data) {
   data = JSON.stringify(data);
-  console.log(data);
   addSpinner();
   $.ajax({
     sync: 'true',
@@ -9,17 +8,21 @@ function sendAjax(data) {
     data: data,
     success: function(message) {
       if (message.message == 'success') {
-        console.log(message.message)
+        console.log(message.message);
+        removeSpinner()
       }
       else {
-        alert(message.message)
+        removeSpinner();
+        var img = document.createElement('img');
+        img.src = "data:image/png;base64," + message;
+        document.body.appendChild(img);
       };
     },
     error: function(xhr, status) {
-      alert('Status', status, 'Error:', xhr)
+      alert('Status', status, 'Error:', xhr);
+      removeSpinner()
     }
   });
-  removeSpinner()
 }
 
 function openChrome() {
@@ -71,4 +74,9 @@ function addSpinner() {
 
 function removeSpinner() {
   $('#spinner').remove();
+}
+
+
+function hexToBase64(str) {
+    return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
 }

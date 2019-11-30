@@ -2,11 +2,11 @@ from flask import Flask, render_template, request, jsonify, send_file
 import requests
 import json
 from driver_funct import *
-from storage_funct import *
 app = Flask(__name__)
 
 # cd C:\Users\pluketina\Documents\Petar\dataflask
-cache = {}
+cache = {} # stores the webdriver
+debug = True
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -27,9 +27,8 @@ def index():
 
 @app.route('/webcrawler', methods=['GET', 'POST'])
 def webcrawler():
-    path = './static/chromedriver.exe'
+    path = './static/drivers/chromedriver.exe'
     if request.method == 'POST':
-        print(1)
         data = request.get_data().decode('utf-8')
         data = json.loads(data)
         print(data)
@@ -47,11 +46,9 @@ def webcrawler():
             return jsonify({'message': 'success'})
         elif data['message'] == 'start':
             temp_image = start_crawling(cache['driver'])
-            response = send_file(temp_image, as_attachment=True, attachment_filename='wordcloud.jpg')
-            return response
+            temp_image = serve_pil_image(temp_image)
+            return send_file(temp_image, mimetype='image/jpeg')
     else:
         return render_template('webcrawler.html')
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=debug)

@@ -1,10 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from wordcloud import WordCloud, STOPWORDS
+from io import BytesIO
 from time import sleep
-from PIL import Image
 import random
-
+import base64
 
 def type_word(word, element):
     for letter in word:
@@ -19,10 +19,10 @@ def type_credentials(driver, data):
     password_entry = driver.find_element(by='css selector', value='#password')
     type_word(data['username'], email_entry)
     type_word(data['password'], password_entry)
-    password_entry.send_keys(Keys.RETURN); sleep(3)
+    password_entry.send_keys(Keys.RETURN)
 
 
-def start_crawling(driver, entries=50):
+def start_crawling(driver, entries=10):
     text_set = set()
     for i in range(entries):
         css = '.occludable-update:nth-child({}) > div > div:nth-child(3)'.format(i)
@@ -51,3 +51,7 @@ def start_crawling(driver, entries=50):
     cloud.generate(s)
     return cloud.to_image()
     # cloud.to_file('./static/media/temp/wordcloud.jpg')
+
+
+def serve_pil_image(pil_img):
+    return base64.b64encode(pil_img.tobytes())
