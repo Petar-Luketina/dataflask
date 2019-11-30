@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-md navbar-light bg-white py-3 shadow-sm">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand font-weight-bold">Petar Luketina</a>
+
+  <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div id="navbarContent" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <!-- nav dropdown -->
+        <li class="nav-item dropdown">
+          <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle">Projects</a>
+          <ul class="dropdown-menu">
+            <!-- lvl 1 dropdown -->
+            <li class="dropdown-submenu">
+              <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Data Science</a>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <!-- lvl 2 dropdown -->
+                <li class="dropdown-submenu">
+                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 2</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                    <!-- lvl 3 dropdown -->
+                    <li class="dropdown-submenu">
+                      <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 3</a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">level 4</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+              </ul>
+            </li>
+            <li class="dropdown-submenu">
+              <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Mobile Apps</a>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+              </ul>
+            </li>
+            <li><a href="#" class="dropdown-item">Some other action</a></li>
+            <li class="dropdown-submenu">
+              <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 1</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 2</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 2</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+                                <li class="dropdown-submenu">
+                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 2</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                  </ul>
+                </li>
+                <li><a href="#" class="dropdown-item">level 2</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script type="text/javascript">
+  $(function() {
+  $("ul.dropdown-menu [data-toggle='dropdown']").on("click", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    //method 1: remove show from sibilings and their children under your first parent
+
+/* 		if (!$(this).next().hasClass('show')) {
+
+		        $(this).parents('.dropdown-menu').first().find('.show').removeClass('show');
+		     }  */
+
+
+    //method 2: remove show from all siblings of all your parents
+    $(this).parents('.dropdown-submenu').siblings().find('.show').removeClass("show");
+
+    $(this).siblings().toggleClass("show");
+
+
+    //collapse all after nav is closed
+    $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+      $('.dropdown-submenu .show').removeClass("show");
+    });
+
+  });
+});
+</script>
+
+<style media="screen">
+  .dropdown-submenu {
+    position: relative;
+  }
+
+  .dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+  }
+</style>

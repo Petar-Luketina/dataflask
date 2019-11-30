@@ -45,7 +45,7 @@ function visitCompany() {
     'message': 'visit',
     'url': 'https://www.linkedin.com/company/'+$('#url').val()
   };
-  sendAjax(data)
+  sendAjax(data);
   $('#btnCrawl').attr('onClick','startCrawling()').removeClass('btn-wait');
 }
 
@@ -57,8 +57,8 @@ function startCrawling() {
 }
 
 function addSpinner() {
-  let width =  String(window.innerWidth/2)
-  let height = String(window.innerHeight/4)
+  let width =  String(window.innerWidth/2);
+  let height = String(window.innerHeight/4);
   let ele = `
   <div id="spinner" class="modal-backdrop fade show">
     <div class="d-flex justify-content-center">
@@ -70,5 +70,5 @@ function addSpinner() {
 }
 
 function removeSpinner() {
-  $('#spinner').remove()
+  $('#spinner').remove();
 }
