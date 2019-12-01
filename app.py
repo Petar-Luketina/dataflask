@@ -48,5 +48,24 @@ def webcrawler():
             return send_from_directory(directory=path, as_attachment=True, filename=file)
     else:
         return render_template('webcrawler.html')
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        data = request.form
+        print(data['name'])
+        print(data['email'])
+        print(data['subject'])
+        print(data['message'])
+        context = {
+            'message': 'Your message was sent. Talk to you soon!'
+        }
+        return render_template('contact.html', context=context)
+    else:
+        return render_template('contact.html', context=None)
+
+
+
 if __name__ == '__main__':
     app.run(debug=debug)

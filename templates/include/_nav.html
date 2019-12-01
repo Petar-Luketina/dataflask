@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white py-3 shadow-sm">
   <div class="container-fluid">
-    <a href="#" class="navbar-brand font-weight-bold">Petar Luketina</a>
+    <a href="{{ url_for('index') }}" class="navbar-brand font-weight-bold">Petar Luketina</a>
   <button type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,16 +14,14 @@
             <li class="dropdown-submenu">
               <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Data Science</a>
               <ul class="dropdown-menu">
-                <li><a href="#" class="dropdown-item">level 2</a></li>
+                <li><a href="{{ url_for('webcrawler') }}" class="dropdown-item">LinkedIn Webcrawler</a></li>
                 <!-- lvl 2 dropdown -->
                 <li class="dropdown-submenu">
-                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">level 2</a>
+                  <a href="#" role="button" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Kaggle Competitions</a>
                   <ul class="dropdown-menu">
-                    <li><a href="#" class="dropdown-item">level 3</a></li>
+                    <li><a href="#" class="dropdown-item">Housing Prices</a></li>
                   </ul>
                 </li>
-                <li><a href="#" class="dropdown-item">level 2</a></li>
-                <li><a href="#" class="dropdown-item">level 2</a></li>
               </ul>
             </li>
             <li class="dropdown-submenu">
@@ -38,7 +36,7 @@
           </ul>
         </li>
         <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+        <li class="nav-item"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
       </ul>
     </div>
   </div>
