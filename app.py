@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 # cd C:\Users\pluketina\Documents\Petar\dataflask
 cache = {} # stores the webdriver
-debug = False
+debug = True
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -27,8 +27,7 @@ def index():
 
 @app.route('/webcrawler', methods=['GET', 'POST'])
 def webcrawler():
-    # /home/pluketina/dataflask/
-    path = './static/drivers/windows/chromedriver.exe'
+    path = './static/drivers/chromedriver.exe'
     if request.method == 'POST':
         data = request.get_data().decode('utf-8')
         data = json.loads(data)
