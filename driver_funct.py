@@ -1,10 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from wordcloud import WordCloud, STOPWORDS
-from io import BytesIO
 from time import sleep
 import random
-import base64
 
 def type_word(word, element):
     for letter in word:
